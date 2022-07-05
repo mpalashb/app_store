@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import os
+
 from datetime import timedelta
 
 from pathlib import Path
@@ -165,12 +165,12 @@ MESSAGE_TAGS = {
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-EMAIL_HOST = os.env.get('EMAIL_HOST')
-EMAIL_HOST_USER = os.env.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.env.get('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = os.env.get('EMAIL_PORT')
-EMAIL_USE_TLS = os.env.get('EMAIL_USE_TLS')
-DEFAULT_FROM_EMAIL = os.env.get('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = None
+EMAIL_HOST_USER = None
+EMAIL_HOST_PASSWORD = None
+EMAIL_PORT = None
+EMAIL_USE_TLS = None
+DEFAULT_FROM_EMAIL = None
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
