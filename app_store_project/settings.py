@@ -172,14 +172,13 @@ EMAIL_PORT = None
 EMAIL_USE_TLS = None
 DEFAULT_FROM_EMAIL = None
 
-STATIC_ROOT = "/staticroot/"
+STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'uploads'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    '/staticroot/',
+    BASE_DIR / "gen_static",
 ]
 
 # REST_FRAMEWORK = {
