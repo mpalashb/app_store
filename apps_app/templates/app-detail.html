@@ -62,7 +62,12 @@
         </div>
         <div class="img-simgle-right" style="width: inherit">
           {% for large_img in app_obj.all_large_images.all %} {% if large_img %}
-          <img class="img-fluid py-3" src="{{large_img.img.url}}" alt="" />
+          <img
+            class="img-fluid py-3"
+            src="{{large_img.img.url}}"
+            alt=""
+            style="width: inherit"
+          />
           {% endif %} {% endfor %}
         </div>
       </div>
