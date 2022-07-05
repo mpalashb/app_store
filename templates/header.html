@@ -1,0 +1,71 @@
+{% load static %}
+<header class="headerComponent">
+  <nav class="container navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'apps:apps-list' %}"> Brand </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#nav-target"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav-target">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link nav-linker" href="{% url 'apps:apps-list' %}">
+            Apps
+          </a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item upload-app-btn text-center">
+          <a class="nav-link" href="{% url 'ac:upload' %}"> Upload App </a>
+        </li>
+
+        {% if user.is_admin %}
+        <a
+          class="nav-link btn btn-info text-bg-success text-white fw-bolder ms-2 px-5"
+          href="{% if user.is_admin %} {% url 'admin:index' %} {% endif %}"
+          target="_blank"
+          style="background-color: darkslateblue"
+        >
+          Admin-Dashboard
+        </a>
+
+        {% else %}
+
+        <a
+          class="nav-link btn btn-info text-bg-success text-white fw-bolder ms-2 px-5"
+          href="{% url 'ac:current-user' %}"
+        >
+          Dashboard
+        </a>
+        {% endif %}
+
+        <a
+          class="nav-link btn btn-danger text-white fw-bolder ms-2 px-5"
+          href="{% url 'ac:logout' %}"
+        >
+          Logout
+        </a>
+
+        {% else %}
+        <a
+          class="nav-link btn btn-info text-white fw-bolder ms-2 px-5 register-ac-btn"
+          href="{% url 'ac:register' %}"
+          style="background: darkolivegreen"
+        >
+          Register
+        </a>
+        <a
+          class="nav-link btn btn-danger text-white fw-bolder ms-2 px-5"
+          href="{% url 'ac:login' %}"
+        >
+          Login
+        </a>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>

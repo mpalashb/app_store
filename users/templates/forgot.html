@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<!--  -->
+
+{% block title %} Reset-Password {% endblock title %}
+
+<!--  -->
+
+{% block content %}
+<div class="container w-50 login-container">
+  <div class="row py-4 px-5 d-flex justify-content-center">
+    <div class="col-md-12 w-75">
+      <div class="wrapper1 py-4 mb-4">
+        <h1 class="fw-bolder fs-3 text-center">Forgot password?</h1>
+      </div>
+      <div class="wrapper2">
+        <form action="{% url 'ac:forgot' %}" method="post">
+          {% csrf_token %}
+          <div class="form-group my-3">
+            <input
+              name="email"
+              type="email"
+              class="form-control"
+              placeholder="Enter your user email"
+              required
+            />
+          </div>
+          <div class="button-c my-4 mb-5 d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-success bg-black text-white w-25 py-2 mx-2"
+            >
+              Reset password
+            </button>
+            <a href="{% url 'ac:login' %}" class="btn btn-danger mx-2 w-25"
+              >Login</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+<!--  -->

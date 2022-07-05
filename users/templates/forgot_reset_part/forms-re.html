@@ -1,0 +1,44 @@
+<title>Password reset form!</title>
+<div class="wrapper" style="display: flex; justify-content: center">
+  <div class="container" style="padding: 100 80">
+    <h1>Reset your password</h1>
+    <small style="color: red">Password didn't matched!</small>
+
+    <br />
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <label for="pwd">Password:</label>
+      <input
+        required
+        type="password"
+        id="pwd"
+        name="pwd"
+        minlength="8"
+      /><br /><br />
+      <label for="pwd">Confirm:</label>
+      <input
+        required
+        type="password"
+        id="pwd2"
+        name="pwd2"
+        minlength="8"
+        style="margin-left: 8px"
+      /><br /><br />
+      <input
+        type="submit"
+        style="
+          margin: auto;
+          width: 100%;
+          padding: 8px;
+          padding-left: 25px;
+          padding-right: 25px;
+          background: green;
+          color: #fff;
+          border: none;
+          border-radius: 8%;
+        "
+      />
+    </form>
+  </div>
+</div>

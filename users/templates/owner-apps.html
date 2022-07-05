@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+
+<!--  -->
+{% block content %}
+
+
+  <div class="container">
+    <h2 class="text-center mt-3 mb-5 text-info">
+      {% if msg %} {{msg}} {% else %} This your apps {% endif %}
+    </h2>
+    <div class="list-group mb-5">
+      {% for app in apps_list_owner %}
+      <div class="list-group-item bg-light">
+        <h4 class="list-group-item-heading">
+          <a
+            href="{% url 'apps:apps-detail' app_slug=app.slug  %}"
+            class="text-decoration-none text-black-50"
+            >{{app.name}}</a
+          >
+        </h4>
+        <div class="btn-group py-2" role="group">
+          <a href="{% url 'ac:owner-apps-update' apps_slug=app.slug  %}" class="btn btn-outline-info">Edit</a>
+          <form action="{% url 'ac:owner-apps-delete' apps_slug=app.slug %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!--  -->
+</div>
+{% endblock content %}
+
+<!--  -->

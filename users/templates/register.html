@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+
+{% block title %} Login Page {% endblock title %}
+<!--  -->
+
+{% block content %}
+
+<div class="container w-50 login-container">
+  <div class="row py-4 px-5 d-flex justify-content-center">
+    <div class="col-md-12 w-75">
+      <div class="wrapper1 py-4 mb-4">
+        <h1 class="fw-bolder fs-3">
+          Regsiter and ipsum dolor sit amet condipisici
+        </h1>
+        <small class="text-danger fw-bold fs-5">Stay with us!</small>
+      </div>
+      <div class="wrapper2">
+        <form action="{% url 'ac:register' %}" method="post">
+          {% csrf_token %}
+          <!--  -->
+          {% for email_err in form.email.errors %}
+          <!--  -->
+          <p class="text-danger fw-bolder">{{email_err}}</p>
+          <!--  -->
+          {% endfor %}
+
+          <div class="form-group my-3">{{form.email}}</div>
+          <!--  -->
+
+          <!--  -->
+          {% for field in form %}
+          <div class="fieldWrapper">
+            <!--  -->
+            {% if field.help_text %}
+            <!--  -->
+            {% if field == form.password1 %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            <!--  -->
+            {% endif %}
+          </div>
+          {% endfor %}
+          <!--  -->
+
+          {% for pass_err in form.password2.errors %}
+          <!--  -->
+          <p class="text-danger fw-bolder">{{pass_err}}</p>
+          <!--  -->
+          {% endfor %}
+
+          <!--  -->
+
+          <div class="form-group my-3">{{form.password1}}</div>
+          <!--  -->
+          {% for field in form %}
+          <div class="fieldWrapper">
+            <!--  -->
+            {% if field.help_text %}
+            <!--  -->
+            {% if field == form.password2 %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            <!--  -->
+            {% endif %}
+          </div>
+          {% endfor %}
+          <!--  -->
+          <div class="form-group my-3">{{form.password2}}</div>
+          <!-- {{form.as_p}} -->
+          <div class="button-c my-4 mb-5 d-flex justify-content-center">
+            <button type="submit" class="btn btn-success w-25 py-2 mx-1">
+              Register
+            </button>
+            <a
+              href="{% url 'ac:login' %}"
+              class="btn btn-danger w-25 py-2 mx-1"
+            >
+              Login
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+<!--  -->

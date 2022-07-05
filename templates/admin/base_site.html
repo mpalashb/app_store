@@ -1,0 +1,58 @@
+{% extends "admin/base.html" %}
+<!--  -->
+{% block title %} {% if subtitle %} {{ subtitle }} | {% endif %} App store
+administration | App store admin {% endblock %}
+
+<!--  -->
+
+{% block branding %}
+<div id="branding">
+  <h1 id="site-name">
+    <!--  -->
+    <a href="{% url 'admin:index' %}" style="color: oldlace; font-weight: 500">
+      App store administration
+    </a>
+    <!--  -->
+  </h1>
+</div>
+{% endblock branding %}
+<!--  -->
+
+{% block usertools %}
+
+<div
+  id="user-tools"
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 15%;
+    padding: 10px 0px;
+    font-family: auto;
+    font-size: medium;
+  "
+>
+  <div class="admininfo-top" style="margin-bottom: 4px">
+    Welcome,
+    <strong style="text-transform: none; color: mediumspringgreen"
+      >{{request.user.email}}</strong
+    >.
+  </div>
+
+  <div class="admininfo-bottom">
+    <a href="/" target="_blank">View site</a> /
+
+    <a href="{% url 'admin:password_change' %}">Change password</a> /
+
+    <a href="{% url 'admin:logout' %}">Log out</a>
+  </div>
+</div>
+{% endblock usertools %}
+
+<!--  -->
+
+<!--  -->
+{% block nav-global %}
+<!--  -->
+{% endblock %}
+<!--  -->

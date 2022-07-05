@@ -1,0 +1,8 @@
+<div className="container" id="message-block">
+    {% for message in messages %}
+        <div  class="alert {{ message.tags }}">
+            <span className="fw-bolder">{{ message }}</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>

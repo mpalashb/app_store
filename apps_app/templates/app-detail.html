@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+
+{% block title %} {{app_obj.name}} {% endblock title %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+<div class="app-single-container">
+  <div class="container">
+    <div class="row">
+      <div class="left-single col-md-3">
+        <div class="img-btn-part d-flex flex-column">
+          {% if app_obj.thumb_img %}
+          <img
+            src="{{app_obj.thumb_img.url}}"
+            alt=""
+            class="img-fluid"
+            style="max-height: 30vh"
+          />
+          {% endif %}
+
+          <button class="btn btn-primary my-2 fw-bold">Download</button>
+        </div>
+        <div class="cat-info-part mt-5">
+          <h1 class="fw-bolder fs-5 pb-2">Categories</h1>
+
+          {% for category in app_obj.category.all %}
+          <a class="btn" href="{% url 'apps:apps-filter' cat=category.name %}">
+            {{category.name}}
+          </a>
+          {% endfor %}
+        </div>
+        <div class="dev-info-part">
+          <div class="dev-website">
+            <h2 class="fw-bolder fs-5 pt-4">Website</h2>
+            <a href="#" target="_blank"> {{app_obj.website}} </a>
+          </div>
+          <div class="dev-user">
+            <h1 class="fw-bolder fs-5 pt-4">User</h1>
+            <span>{{app_obj.author}}</span>
+          </div>
+          <div class="dev-links pt-5">
+            <h1 class="fw-bolder fs-5 pt-4">Other Links</h1>
+            <ul class="list-unstyled d-flex flex-column">
+              <a href="#" class="text-decoration-none"> Documentation </a>
+              <a href="#" class="text-decoration-none"> Privacy Policy </a>
+              <a href="#" class="text-decoration-none"> Contact </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="right-single col-md-9 px-5">
+        <h1 class="fw-bolder">{{app_obj.name}}</h1>
+        <div class="info-single py-4">
+          <h6 class="fs-5">{{app_obj.name}} starter info</h6>
+          <div class="pt-4" style="overflow-wrap: anywhere">
+            {{app_obj.desc|safe}}
+          </div>
+        </div>
+        <div class="img-simgle-right" style="width: inherit">
+          {% for large_img in app_obj.all_large_images.all %} {% if large_img %}
+          <img class="img-fluid py-3" src="{{large_img.img.url}}" alt="" />
+          {% endif %} {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+<!--  -->

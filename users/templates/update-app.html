@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+
+{% block content %}
+
+<div class="container app-submit-container">
+  <div class="d-flex justify-content-center">
+    <div class="app-sec">
+      <div class="app-sec-con pt-5 pb-4 d-flex justify-content-center">
+        <div class="text-center">
+          <h1 class="fw-bold">Update Your App</h1>
+        </div>
+      </div>
+      <div class="app-sec-2">
+        <form
+          action="{% url 'ac:owner-apps-update' apps_slug=slug %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <div class="app-sec-start py-5">
+            <div id="prev-thumb-notify"></div>
+
+            <div id="prev-thumb-id"></div>
+
+            <div class="row thumb">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="thumbnail" class="fw-normal">
+                  Upload Thumbnail
+                </label>
+              </div>
+              <div class="col-sm-9 d-flex">
+                {{form.thumb_img}}
+
+                <button class="btn btn-primary ms-2" type="button">
+                  Upload
+                </button>
+                <button class="btn btn-danger ms-2" type="submit">
+                  Remove
+                </button>
+              </div>
+            </div>
+            <div class="row name pt-3">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="" class="fw-normat"> App Name </label>
+                <span style="color: red"> *</span>
+              </div>
+
+              <div class="col-sm-9 d-flex">{{form.name}}</div>
+            </div>
+            <div class="row category pt-3">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="" class="fw-normal"> Category </label>
+                <span style="color: red"> *</span>
+              </div>
+
+              <div class="col-sm-9 d-flex">{{form.category}}</div>
+            </div>
+            <div class="row website pt-3">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="" class="fw-normal"> App Website </label>
+              </div>
+
+              <div class="col-sm-9 d-flex">{{form.website}}</div>
+            </div>
+            <div class="row desc pt-3">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="">Description</label>
+              </div>
+
+              <div class="col-sm-9 d-flex">{{form.desc}}</div>
+            </div>
+            <div class="row large-photo pt-3">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="" class="fw-normal">Large images</label>
+              </div>
+
+              <div class="col-sm-9 d-flex">
+                <div class="file-upload-wrapper w-100">
+                  <div id="fileDropBox">{{form.all_large_images}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row large-photo pt-3">
+              <div class="col-sm-3 m-auto">
+                <label htmlFor="" class="fw-normal"> Image Files </label>
+              </div>
+
+              <div class="col-sm-9">
+                <div class="img-preview-list"></div>
+              </div>
+            </div>
+
+            <div class="app-sec-last pt-5 d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary fw-bolder">
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+<!--  -->

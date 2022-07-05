@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+
+{% block title %} Product List {% endblock title %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+<main class="container py-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="sec1 p-5">
+        <h1 class="fw-bold">{{customizer.title}}</h1>
+        <p class="lead">{{customizer.small_desc}}</p>
+      </div>
+      <div class="sec2 p-5">
+        <form action="{% url 'apps:apps-search' %}" method="get">
+          <div class="position-relative">
+            <div class="card-input">
+              <input
+                name="apps-search-query"
+                type="text"
+                class="form-control py-3 ps-4"
+                placeholder="Search for apps"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary ms-auto position-absolute py-2 px-3 icon-btn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      {% if customizer.right_img %}
+      <img class="img-fluid" src="{{customizer.right_img.url}}" alt=""/>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-4 ps-5">
+      <div class="navbar-expand-lg">
+        <div class="d-grid gap-4 w-75">
+          <div class="d-grid gap-2">
+            <h6 class="cat-heading text-uppercase">Top</h6>
+            
+            {% if top %}
+              
+           
+              
+            <a
+              href="{% url 'apps:apps-filter' cat=top.name %}"
+              class="cat-item px-4 py-2 text-decoration-none text-black fw-normal"
+            >
+              {{top.name}}
+              <span class="cat-item-right">{{top.all_apps.count}}</span>
+            </a>
+            {% endif %}
+          </div>
+          <div class="d-grid gap-2">
+            <h6 class="cat-heading text-uppercase">Category</h6>
+            {% for cat_item in cats %}
+
+            <a
+              href="{% url 'apps:apps-filter' cat=cat_item.name %}"
+              class="cat-item px-4 py-2 text-decoration-none text-black fw-normal"
+
+              {% if cat_item.name == filter_cat %}
+              style="background: rgb(199 199 199);"
+              {% endif %}
+
+            >
+              {{cat_item.name}}
+              <span class="cat-item-right">{{cat_item.all_apps.count}}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="pro-info py-2">
+        <div
+          class="detail-info d-flex justify-content-between align-items-center"
+        >
+          <h1 class="fw-bolder">Featured</h1>
+          <a href="{% url 'apps:apps-list' %}" class="fw-bold text-decoration-none view_all_link">
+            View all
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        {% for app in apps_list %}
+        <div class="col-md-4 d-flex">
+          <div class="card flex-fill mb-4">
+            <a href="{% url 'apps:apps-detail' app_slug=app.slug  %}">
+              {% if app.thumb_img %}
+              <img class="img-fluid" src="{{ app.thumb_img.url }}" alt=""  style="
+              width: 100%;
+              height: 15vw;
+              object-fit: cover;
+          " />
+              {% endif %}
+            </a>
+            <div class="card-body">
+              <a
+                href="{% url 'apps:apps-detail' app_slug=app.slug  %}"
+                class="card-title-a"
+              >
+                <h4 class="card-title">{{app.name}}</h4>
+              </a>
+              <p>{{app.desc | safe | truncatewords:30}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+<!--  -->
