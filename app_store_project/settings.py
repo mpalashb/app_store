@@ -174,7 +174,7 @@ DEFAULT_FROM_EMAIL = None
 
 STATIC_ROOT = BASE_DIR / "static"
 # MEDIA_ROOT = 'uploads'
-MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 
