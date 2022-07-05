@@ -173,9 +173,11 @@ EMAIL_USE_TLS = None
 DEFAULT_FROM_EMAIL = None
 
 STATIC_ROOT = BASE_DIR / "static"
+# MEDIA_ROOT = 'uploads'
+MEDIA_ROOT = BASE_DIR / 'uploads'
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'uploads'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "gen_static",
