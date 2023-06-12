@@ -1,5 +1,4 @@
-# app_store
-## app_store screenshot
+## app store screenshot
 
 <img src="screenshot/register-font.png">
 
